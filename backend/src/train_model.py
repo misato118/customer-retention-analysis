@@ -33,5 +33,8 @@ model.fit(X_train, y_train)
 
 print(f"Real Data Accuracy: {model.score(X_test, y_test) * 100:.2f}%")
 
-joblib.dump(model, 'churn_model.pkl')
+current_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(current_dir, 'churn_model.pkl')
+
+joblib.dump(model, output_path)
 print("Model trained on real Telco data and saved!")
