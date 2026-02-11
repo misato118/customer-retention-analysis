@@ -5,6 +5,8 @@ import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@h
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { CheckIcon } from '@heroicons/react/20/solid'
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
 const contractOptions = [
   { value: 0, label: "Month-to-Month" },
   { value: 1, label: "One Year" },
@@ -28,7 +30,7 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch("http://127.0.0.1:8000/predict", {
+    const response = await fetch(`${API_URL}/predict`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
