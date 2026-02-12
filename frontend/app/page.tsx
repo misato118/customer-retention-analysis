@@ -27,19 +27,31 @@ export default function Home() {
     contract_type: contractOptions[0].value,
   });
   const [prediction, setPrediction] = useState<ResultData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch(`${API_URL}/predict`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
 
-    const data = await response.json();
-    setPrediction(data);
+    setIsLoading(true);
+    setPrediction(null);
+
+    try {
+      const response = await fetch(`${API_URL}/predict`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      setPrediction(data);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error connecting to server. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -120,17 +132,25 @@ export default function Home() {
 
         <button
           type="submit"
+          disabled={isLoading}
           className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         >
           Predict
         </button>
 
         <div className="my-5">
-        {prediction && (
+        {!isLoading && prediction ? (
           <div className={`mt-6 p-4 rounded ${prediction.prediction === 1 ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
             <h3 className="font-bold text-lg">{prediction.message}</h3>
             <p>Probability: {(prediction.churn_probability * 100).toFixed(1)}%</p>
           </div>
+        ) : (
+          isLoading && (
+            <div className="mt-6 flex flex-col items-center justify-center text-gray-500">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+              <p className="text-sm">Waking up the AI model... (this may take 30s)</p>
+            </div>
+          )
         )}
       </div>
       </form>
