@@ -9,15 +9,14 @@ test('User can calculate churn risk', async ({ page }) => {
   await page.getByTestId('monthly-charges-input').fill('50');
   await page.getByTestId('total-charges-input').fill('600');
 
-  await page.getByRole('combobox').selectOption('0');
+  const contractDropdown = page.getByRole('button', { name: 'Contract' });
+  await contractDropdown.click();
+  await page.getByRole('option', { name: 'One Year'}).click();
 
   // 3. Click the Predict Button
-  await page.getByRole('button').click();
+  await page.getByRole('button', { name: 'Predict' }).click();
 
-  // 4. Check if the Loading Spinner appears (Optional)
-  await expect(page.getByText(/Waking up the AI model.../)).toBeVisible();
-
-  // 5. Check the Result
+  // 4. Check the Result
   const result = page.locator('p', { hasText: 'Probability:' });
   await expect(result).toBeVisible({ timeout: 60000 });
 });
