@@ -2,6 +2,11 @@
 
 A full-stack machine learning application that predicts whether a telecommunications customer is likely to churn (cancel their subscription) based on their billing and demographic data.
 
+<p float="left">
+  <img src="./assets/demo-screenshot-safe.png" width="300" height="500" />
+  <img src="./assets/demo-screenshot-risk.png" width="300" height="500" />
+</p>
+
 **Live Demo:** [Click here for a live demo](https://customer-retention-analysis.vercel.app/)
 
 ## 📖 Overview
