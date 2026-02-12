@@ -59,31 +59,31 @@ export default function Home() {
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">
           <div className="border-b border-white/10 pb-12 mb-3">
-            <h2 className="text-2xl/7 font-semibold text-white">Churn Predictor</h2>
+            <h2 className="text-2xl/7 font-semibold">Churn Predictor</h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
-                <label htmlFor="tenure" className="block text-sm/6 font-medium text-white">Tenure</label>
+                <label htmlFor="tenure" className="block text-sm/6 font-medium">Tenure</label>
                 <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white/5 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
+                  <div className="flex items-center rounded-md bg-gray-800 text-white border border-gray-700 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
                     <input id="tenure" type="number" data-testid="tenure-input" name="tenure" value={formData.tenure} onChange={(e) => setFormData({...formData, tenure: parseInt(e.target.value)})} className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
                   </div>
                 </div>
               </div>
 
               <div className="sm:col-span-4">
-                <label htmlFor="monthly_charges" className="block text-sm/6 font-medium text-white">Monthly Charges</label>
+                <label htmlFor="monthly_charges" className="block text-sm/6 font-medium">Monthly Charges</label>
                 <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white/5 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
+                  <div className="flex items-center rounded-md bg-gray-800 text-white border border-gray-700 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
                     <input id="monthly_charges" type="number" data-testid="monthly-charges-input" value={formData.monthly_charges} onChange={(e) => setFormData({...formData, monthly_charges: parseInt(e.target.value)})} className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
                   </div>
                 </div>
               </div>
 
               <div className="sm:col-span-4">
-                <label htmlFor="total_charges" className="block text-sm/6 font-medium text-white">Total Charges</label>
+                <label htmlFor="total_charges" className="block text-sm/6 font-medium">Total Charges</label>
                 <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white/5 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
+                  <div className="flex items-center rounded-md bg-gray-800 text-white border border-gray-700 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
                     <input id="total_charges" type="number" data-testid="total-charges-input" name="total_charges" value={formData.total_charges} onChange={(e) => setFormData({...formData, total_charges: parseInt(e.target.value)})} className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
                   </div>
                 </div>
@@ -91,9 +91,9 @@ export default function Home() {
 
               <div className="sm:col-span-4">
                 <Listbox onChange={(value) => setFormData({...formData, contract_type: parseInt(value)})}>
-                  <Label className="block text-sm/6 font-medium text-white">Contract</Label>
+                  <Label className="block text-sm/6 font-medium">Contract</Label>
                   <div className="relative mt-2">
-                    <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md bg-gray-800/50 py-1.5 pr-2 pl-3 text-left text-white outline-1 -outline-offset-1 outline-white/10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-500 sm:text-sm/6">
+                    <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md bg-gray-800 border border-gray-700 py-1.5 pr-2 pl-3 text-left text-white outline-1 -outline-offset-1 outline-white/10 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-500 sm:text-sm/6">
                       <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
                         <span className="block truncate">{contractOptions[formData.contract_type].label}</span>
                       </span>
@@ -105,7 +105,7 @@ export default function Home() {
 
                     <ListboxOptions
                       transition
-                      className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-gray-800 py-1 text-base outline-1 -outline-offset-1 outline-white/10 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
+                      className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-gray-800 text-white border border-gray-700 py-1 text-base outline-1 -outline-offset-1 outline-white/10 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
                     >
                       {contractOptions.map((contractOption) => (
                         <ListboxOption
